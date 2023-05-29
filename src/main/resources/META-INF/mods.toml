@@ -1,0 +1,40 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="MIT"
+
+[[mods]]
+modId="moreredxcctcompat"
+version="${file.jarVersion}"
+displayName="More Red x CC:Tweaked Compat"
+authors="YuRaNnNzZZ"
+description='''
+Adds support for More Red colored and bundled cables to CC:Tweaked computers
+'''
+
+[[dependencies.moreredxcctcompat]]
+    modId="forge"
+    mandatory=true
+    versionRange="[43,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.moreredxcctcompat]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,1.20)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.moreredxcctcompat]]
+    modId="computercraft"
+    mandatory=true
+    versionRange="[1.101.2,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.moreredxcctcompat]]
+    modId="morered"
+    mandatory=true
+    versionRange="[3.0.0.0,)"
+    ordering="NONE"
+    side="BOTH"
