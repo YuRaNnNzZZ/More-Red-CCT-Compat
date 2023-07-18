@@ -2,7 +2,7 @@ package ru.yurannnzzz.moreredcccompat.cc;
 
 import commoble.morered.api.ChanneledPowerSupplier;
 import commoble.morered.api.MoreRedAPI;
-import dan200.computercraft.api.redstone.IBundledRedstoneProvider;
+import dan200.computercraft.api.redstone.BundledRedstoneProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 
-public class MoreRedBundledRedstoneProvider implements IBundledRedstoneProvider {
+public class MoreRedBundledRedstoneProvider implements BundledRedstoneProvider {
     @Override
     public int getBundledRedstoneOutput(@NotNull Level world, @NotNull BlockPos pos, @NotNull Direction side) {
         BlockEntity blockEntity = world.getBlockEntity(pos);

@@ -3,8 +3,8 @@ package ru.yurannnzzz.moreredcccompat;
 import commoble.morered.api.MoreRedAPI;
 import commoble.morered.api.WireConnector;
 import dan200.computercraft.api.ComputerCraftAPI;
-import dan200.computercraft.shared.Registry;
-import dan200.computercraft.shared.computer.blocks.TileComputerBase;
+import dan200.computercraft.shared.ModRegistry;
+import dan200.computercraft.shared.computer.blocks.AbstractComputerBlockEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,16 +35,16 @@ public class MoreRedCCCompatMod {
         ComputerWireConnector connector = new ComputerWireConnector();
         Map<Block, WireConnector> registry = MoreRedAPI.getCableConnectabilityRegistry();
 
-        registry.put(Registry.ModBlocks.COMPUTER_NORMAL.get(), connector);
-        registry.put(Registry.ModBlocks.COMPUTER_ADVANCED.get(), connector);
-        registry.put(Registry.ModBlocks.COMPUTER_COMMAND.get(), connector);
-        registry.put(Registry.ModBlocks.TURTLE_NORMAL.get(), connector);
-        registry.put(Registry.ModBlocks.TURTLE_ADVANCED.get(), connector);
+        registry.put(ModRegistry.Blocks.COMPUTER_NORMAL.get(), connector);
+        registry.put(ModRegistry.Blocks.COMPUTER_ADVANCED.get(), connector);
+        registry.put(ModRegistry.Blocks.COMPUTER_COMMAND.get(), connector);
+        registry.put(ModRegistry.Blocks.TURTLE_NORMAL.get(), connector);
+        registry.put(ModRegistry.Blocks.TURTLE_ADVANCED.get(), connector);
     }
 
     @SubscribeEvent
     public void attachCapability(AttachCapabilitiesEvent<BlockEntity> event) {
-        if (event.getObject() instanceof TileComputerBase) {
+        if (event.getObject() instanceof AbstractComputerBlockEntity) {
             event.addCapability(ComputerChanneledPowerCapability.LOCATION, new ComputerChanneledPowerCapability.Provider());
         }
     }
