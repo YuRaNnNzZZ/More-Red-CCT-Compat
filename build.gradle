@@ -49,10 +49,9 @@ configurations {
 
 repositories {
     maven {
-        url 'https://squiddev.cc/maven/'
+        url 'https://maven.squiddev.cc'
         content {
             includeGroup 'cc.tweaked'
-            includeModule('org.squiddev', 'Cobalt')
         }
     }
     maven {
@@ -61,21 +60,13 @@ repositories {
             includeGroup 'net.commoble.morered'
         }
     }
-    maven {
-        url 'https://cursemaven.com'
-        content {
-            includeGroup 'curse.maven'
-        }
-    }
 }
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    compileOnly "cc.tweaked:cc-tweaked-${minecraft_version_major}-core-api:${cctweaked_version}"
-    compileOnly "cc.tweaked:cc-tweaked-${minecraft_version_major}-forge-api:${cctweaked_version}"
-    compileOnly "cc.tweaked:cc-tweaked-${minecraft_version_major}-forge:${cctweaked_version}"
-    runtimeOnly "curse.maven:cc-tweaked-282001:${cctweaked_file_id}" // 1.113.0 is NOT on maven, why??????????????????????
+    compileOnly "cc.tweaked:cc-tweaked-${minecraft_version}-forge-api:${cctweaked_version}"
+    implementation "cc.tweaked:cc-tweaked-${minecraft_version}-forge:${cctweaked_version}"
 
     implementation "net.commoble.morered:morered-${minecraft_version_major}:${morered_version}"
 }
