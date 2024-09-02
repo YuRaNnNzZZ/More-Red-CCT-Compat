@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 
 public class MoreRedBundledRedstoneProvider implements BundledRedstoneProvider {
@@ -16,11 +15,9 @@ public class MoreRedBundledRedstoneProvider implements BundledRedstoneProvider {
         BlockEntity blockEntity = world.getBlockEntity(pos);
 
         if (blockEntity != null) {
-            LazyOptional<ChanneledPowerSupplier> capability = blockEntity.getCapability(MoreRedAPI.CHANNELED_POWER_CAPABILITY, side);
+            ChanneledPowerSupplier channeledPowerSupplier = world.getCapability(MoreRedAPI.CHANNELED_POWER_CAPABILITY, blockEntity.getBlockPos(), side);
 
-            if (capability.isPresent()) {
-                ChanneledPowerSupplier channeledPowerSupplier = capability.orElseThrow(NullPointerException::new);
-
+            if (channeledPowerSupplier != null) {
                 int result = 0;
 
                 for (int i = 0; i < 16; i++) {

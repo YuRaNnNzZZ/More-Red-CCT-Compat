@@ -4,15 +4,11 @@ import commoble.morered.api.MoreRedAPI;
 import commoble.morered.api.WireConnector;
 import dan200.computercraft.api.ComputerCraftAPI;
 import dan200.computercraft.shared.ModRegistry;
-import dan200.computercraft.shared.computer.blocks.AbstractComputerBlockEntity;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import ru.yurannnzzz.moreredcccompat.cc.MoreRedBundledRedstoneProvider;
 import ru.yurannnzzz.moreredcccompat.morered.ComputerChanneledPowerCapability;
 import ru.yurannnzzz.moreredcccompat.morered.ComputerWireConnector;
@@ -23,10 +19,9 @@ import java.util.Map;
 public class MoreRedCCCompatMod {
     public static final String MOD_ID = "moreredxcctcompat";
 
-    public MoreRedCCCompatMod() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerConnectors);
-
-        MinecraftForge.EVENT_BUS.register(this);
+    public MoreRedCCCompatMod(IEventBus modEventBus) {
+        modEventBus.addListener(this::registerConnectors);
+        modEventBus.addListener(this::registerCapabilities);
 
         ComputerCraftAPI.registerBundledRedstoneProvider(new MoreRedBundledRedstoneProvider());
     }
@@ -42,10 +37,11 @@ public class MoreRedCCCompatMod {
         registry.put(ModRegistry.Blocks.TURTLE_ADVANCED.get(), connector);
     }
 
-    @SubscribeEvent
-    public void attachCapability(AttachCapabilitiesEvent<BlockEntity> event) {
-        if (event.getObject() instanceof AbstractComputerBlockEntity) {
-            event.addCapability(ComputerChanneledPowerCapability.LOCATION, new ComputerChanneledPowerCapability.Provider());
-        }
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.COMPUTER_NORMAL.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
+        event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.COMPUTER_ADVANCED.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
+        event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.COMPUTER_COMMAND.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
+        event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.TURTLE_NORMAL.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
+        event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.TURTLE_ADVANCED.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
     }
 }
