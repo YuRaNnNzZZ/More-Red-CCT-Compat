@@ -5,7 +5,7 @@ plugins {
     id 'net.neoforged.moddev' version '2.0.77'
 }
 
-version = "${minecraft_version}-${mod_version}"
+version = mod_version
 group = mod_group_id
 
 repositories {
@@ -13,7 +13,7 @@ repositories {
 }
 
 base {
-    archivesName = archive_base_name
+    archivesName = mod_id
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -131,7 +131,11 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
                              mod_license            : mod_license,
                              mod_version            : mod_version,
                              mod_authors            : mod_authors,
-                             mod_description        : mod_description]
+                             mod_description        : mod_description,
+                             mod_issue_tracker_url  : mod_issue_tracker_url,
+                             mod_display_url        : mod_display_url,
+                             cctweaked_version_range: cctweaked_version_range,
+                             morered_version_range  : morered_version_range]
     inputs.properties replaceProperties
     expand replaceProperties
     from "src/main/templates"
