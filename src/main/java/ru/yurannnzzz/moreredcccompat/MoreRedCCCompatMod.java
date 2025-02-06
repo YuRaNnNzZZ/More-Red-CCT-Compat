@@ -35,6 +35,7 @@ public class MoreRedCCCompatMod {
         registry.put(ModRegistry.Blocks.COMPUTER_COMMAND.get(), connector);
         registry.put(ModRegistry.Blocks.TURTLE_NORMAL.get(), connector);
         registry.put(ModRegistry.Blocks.TURTLE_ADVANCED.get(), connector);
+        registry.put(ModRegistry.Blocks.REDSTONE_RELAY.get(), connector);
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -43,5 +44,6 @@ public class MoreRedCCCompatMod {
         event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.COMPUTER_COMMAND.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
         event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.TURTLE_NORMAL.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
         event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.TURTLE_ADVANCED.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
+        event.registerBlockEntity(MoreRedAPI.CHANNELED_POWER_CAPABILITY, ModRegistry.BlockEntities.REDSTONE_RELAY.get(), (be, side) -> new ComputerChanneledPowerCapability(side));
     }
 }
