@@ -51,7 +51,7 @@ repositories {
         }
     }
     maven {
-        url 'https://cubicinterpolation.net/maven/'
+        url 'https://commoble.net/maven/'
         content {
             includeGroup 'commoble.morered'
         }
