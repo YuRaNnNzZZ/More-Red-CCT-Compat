@@ -20,4 +20,3 @@ CC:Tweaked 1.108.0 for 1.20.1 adds native More Red integration, making this mod 
 
 # Releases
 - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/more-red-x-cc-tweaked-compat)
-- [Modrinth](https://modrinth.com/mod/more-red-x-cc-tweaked-compat)
